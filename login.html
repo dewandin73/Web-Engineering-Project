@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   </head>
   <body class="login-page">
 
@@ -54,14 +56,24 @@
         </div>
         
         <div class="social-login">
-          <button class="w3-button w3-round-large w3-blue w3-hover-indigo social-btn">
-            <i class="fab fa-google"></i> Continue with Google
-          </button>
-          <button class="w3-button w3-round-large w3-indigo w3-hover-blue social-btn">
-            <i class="fab fa-facebook-f"></i> Continue with Facebook
-          </button>
-        </div>
+            <!-- Google Sign-In Button -->
+            <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com" data-context="signin"
+                data-ux_mode="popup" data-callback="handleGoogleSignIn" data-auto_prompt="false">
+            </div>
         
+            <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_blue"
+                data-text="signin_with" data-size="large" data-logo_alignment="left" data-width="300">
+            </div>
+        
+            <!-- Facebook Login Button -->
+            <div id="fb-login-container">
+                <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default"
+                    data-auto-logout-link="false" data-use-continue-as="true" data-scope="public_profile,email"
+                    data-onlogin="checkFacebookLoginState()">
+                </div>
+            </div>
+        </div>
+       
         <div class="divider">
           <span>or</span>
         </div>
