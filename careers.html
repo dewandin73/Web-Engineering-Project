@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Careers - Volunteer Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+      <div class="navigation w3-highway-blue w3-container">
+        <nav class="nav-container w3-padding-large">
+          <div class="logo">
+            <a href="index.html">BE A VOLUNTEER</a>
+          </div>
+          <div class="mobile-button">
+            <span style="float: right;" onclick="toggleMobileNavigation()">&#9776;</span>
+          </div>
+          <div class="links">
+            <a href="index.html#about">About</a>
+            <a href="index.html#services">Services</a>
+            <a href="careers.html" class="active">Careers</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="login.html">LogIn</a>            
+          </div>
+          <div id="mobile-sidenav" class="mobile-links w3-highway-blue">
+            <div class="mobile-logo" style="display: inline;">
+              <a href="index.html" class="logo">BE A VOLUNTEER</a>
+              <span style="width: 100%;"></span>
+              <a href="javascript:void(0)" class="closebtn" onclick="toggleMobileNavigation()">&times;</a>
+            </div>
+            <a href="index.html#about" onclick="toggleMobileNavigation()">About Us</a>
+            <a href="index.html#services" onclick="toggleMobileNavigation()">Services</a>
+            <a href="careers.html" onclick="toggleMobileNavigation()" class="active">Careers</a>
+            <a href="index.html#contact" onclick="toggleMobileNavigation()">Contact</a>
+            <a href="login.html" onclick="toggleMobileNavigation()">LogIn</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="hero" id="home">
+        <div class="text container">
+          <p class="pre-title">Join Our Mission</p>
+          <h1 class="title">VOLUNTEER <span>OPPORTUNITIES</span></h1>
+          <p class="post-title">Make a difference in your community</p>
+          <a class="w3-button w3-round-large w3-indigo w3-hover-blue" href="#openings">VIEW OPENINGS</a> 
+        </div>
+      </div>
+
+      <div class="about container w3-padding-large" id="about">
+        <div class="text-one">
+          <h2>Why Volunteer With Us?</h2>
+          <p>At VolunteerMS, we believe that everyone has something valuable to contribute. Our volunteers are the heart of our organization, helping us create meaningful change in communities around the world. Whether you're looking to develop new skills, meet like-minded people, or simply give back, we have opportunities that match your interests and availability.</p>
+          <p>We offer flexible commitments, comprehensive training, and the chance to work on projects that truly make a difference.</p>
+        </div>
+        <div class="text-one">
+          <h2>Volunteer Benefits</h2>
+          <ul class="benefits-list">
+            <li><i class="fa fa-check-circle w3-text-indigo"></i> Skill development and training programs</li>
+            <li><i class="fa fa-check-circle w3-text-indigo"></i> Networking with professionals and community leaders</li>
+            <li><i class="fa fa-check-circle w3-text-indigo"></i> Flexible scheduling to fit your availability</li>
+            <li><i class="fa fa-check-circle w3-text-indigo"></i> Letters of recommendation for outstanding service</li>
+            <li><i class="fa fa-check-circle w3-text-indigo"></i> Annual recognition events and awards</li>
+            <li><i class="fa fa-check-circle w3-text-indigo"></i> Opportunities for leadership roles</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="w3-panel w3-highway-blue numbers">
+        <h2 class="w3-center w3-xxxlarge">OUR VOLUNTEERS</h2>
+        <div class="container w3-padding-large">
+          <div class="text">
+            <p class="number">479</p>
+            <p>Active Volunteers</p>
+          </div>
+          <div class="text">
+            <p class="number">92%</p>
+            <p>Satisfaction Rate</p>
+          </div>
+          <div class="text">
+            <p class="number">120</p>
+            <p>Events This Year</p>
+          </div>
+          <div class="text">
+            <p class="number">35</p>
+            <p>Communities Served</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="services container" id="openings">
+        <h2 class="w3-center">Current Volunteer Opportunities</h2>
+        <div class="cards w3-padding-large w3-margin-top">
+          
+          <div class="card w3-card-4">
+            <header class="w3-container w3-indigo">
+              <h3>COMMUNITY OUTREACH VOLUNTEER</h3>
+            </header>
+            <div class="content w3-container">
+              <div class="card-text">
+                <h4>Role Description</h4>
+                <p>Engage with local communities to promote our programs and recruit new volunteers. This role involves attending events, giving presentations, and building relationships.</p>
+                
+                <h4>Requirements</h4>
+                <ul class="requirements-list">
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Excellent communication skills</li>
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Comfortable with public speaking</li>
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Weekend availability</li>
+                </ul>
+                
+                <h4>Commitment</h4>
+                <p><i class="fa fa-clock-o w3-text-indigo"></i> 10-15 hours/month</p>
+              </div>
+            </div>
+            <footer class="w3-container">
+              <a class="w3-button w3-indigo w3-hover-blue" style="width: 100%;" href="#apply">Apply Now</a>
+            </footer>
+          </div>
+
+          <div class="card w3-card-4">
+            <header class="w3-container w3-indigo">
+              <h3>DIGITAL CONTENT CREATOR</h3>
+            </header>
+            <div class="content w3-container">
+              <div class="card-text">
+                <h4>Role Description</h4>
+                <p>Create engaging content for our website and social media platforms including blog posts, graphics, and social media campaigns.</p>
+                
+                <h4>Requirements</h4>
+                <ul class="requirements-list">
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Content creation experience</li>
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Basic graphic design skills</li>
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Social media knowledge</li>
+                </ul>
+                
+                <h4>Commitment</h4>
+                <p><i class="fa fa-clock-o w3-text-indigo"></i> 5-10 hours/week</p>
+              </div>
+            </div>
+            <footer class="w3-container">
+              <a class="w3-button w3-indigo w3-hover-blue" style="width: 100%;" href="#apply">Apply Now</a>
+            </footer>
+          </div>
+
+          <div class="card w3-card-4">
+            <header class="w3-container w3-indigo">
+              <h3>YOUTH MENTOR</h3>
+            </header>
+            <div class="content w3-container">
+              <div class="card-text">
+                <h4>Role Description</h4>
+                <p>Provide guidance and support to young people in our community programs through academic support and personal development.</p>
+                
+                <h4>Requirements</h4>
+                <ul class="requirements-list">
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Patience and empathy</li>
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> Background check required</li>
+                  <li><i class="fa fa-angle-right w3-text-indigo"></i> 1-year commitment</li>
+                </ul>
+                
+                <h4>Commitment</h4>
+                <p><i class="fa fa-clock-o w3-text-indigo"></i> 2-4 hours/week</p>
+              </div>
+            </div>
+            <footer class="w3-container">
+              <a class="w3-button w3-indigo w3-hover-blue" style="width: 100%;" href="#apply">Apply Now</a>
+            </footer>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="testimonials container w3-padding-large">
+        <h2 class="w3-center">Volunteer Testimonials</h2>
+        <div class="cards w3-padding-large w3-margin-top">
+          <div class="card w3-card-2 w3-padding-large w3-border w3-border-blue w3-round-large">
+            <div class="card-text">
+              <p><i class="fa fa-quote-left w3-text-indigo"></i> Volunteering here helped me grow professionally while making real impact. The training was excellent and the team became like family.</p>
+              <p class="w3-right-align" style="font-weight: bold;">- Sarah K., 2 Years Volunteering</p>
+            </div>
+          </div>
+          <div class="card w3-card-2 w3-padding-large w3-border w3-border-blue w3-round-large">
+            <div class="card-text">
+              <p><i class="fa fa-quote-left w3-text-indigo"></i> As a digital content volunteer, I gained portfolio pieces that helped me land my first marketing job. Flexible hours made it perfect for students.</p>
+              <p class="w3-right-align" style="font-weight: bold;">- Michael T., 1 Year Volunteering</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact container" id="apply">
+        <div class="short-contact">
+          <h2>Ready to Join Us?</h2>
+          <p class="w3-xlarge">We're excited to have you on board!</p>
+          <div class="w3-large w3-margin-top contact-info">
+            <i class="fa fa-envelope-o"></i><span style="margin-left:10px;"><a href="mailto:volunteer@mgnt.com">volunteer@mgnt.com</a></span><br>
+            <i class="fa fa-phone"></i><span style="margin-left:10px;"><a href="tel:+880197532486">+880 197532486</a></span><br>
+          </div>
+        </div>
+        <div class="form w3-margin-top">
+          <div class="container w3-round-xlarge">
+            <form class="w3-highway-blue w3-padding-large w3-round-large">
+              <h3 class="w3-center">Volunteer Application</h3>
+              
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+              
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Your email" required>
+              
+              <label for="position">Position</label>
+              <select id="position" name="position" required>
+                <option value="">Select position</option>
+                <option value="outreach">Community Outreach</option>
+                <option value="content">Digital Content Creator</option>
+                <option value="mentor">Youth Mentor</option>
+              </select>
+              
+              <label for="message">Why do you want to volunteer with us?</label>
+              <textarea id="message" name="message" placeholder="Tell us about yourself and motivations" style="height:150px" required></textarea>
+              
+              <input class="w3-metro-blue" type="submit" value="Submit Application">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-highway-blue w3-padding-large" id="footer">
+        <p class="w3-center logo">© 2025 - Volunteer Management System - All rights reserved</p>
+      </div>
+
+      <script>
+        function toggleMobileNavigation() {
+          const mobileNav = document.getElementById("mobile-sidenav");
+          if (mobileNav.style.width === "0px" || !mobileNav.style.width) {
+            mobileNav.style.width = "70%";
+          } else {
+            mobileNav.style.width = "0px";
+          }
+        }
+      </script>
+  </body>
+</html>
