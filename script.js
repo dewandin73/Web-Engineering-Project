@@ -322,81 +322,82 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.remove('invalid');
     }
   });
-
-  // Form submission with simulated database check
-  loginForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // Trigger validation
-    emailInput.dispatchEvent(new Event('input'));
-    passwordInput.dispatchEvent(new Event('input'));
-
-    // Check for errors
-    const errors = document.querySelectorAll('.error-message');
-    let hasErrors = false;
-
-    errors.forEach(error => {
-      if (error.textContent !== '') {
-        hasErrors = true;
-      }
-    });
-
-    if (hasErrors) {
-      return;
-    }
-
-    // Get form data
-    const formData = {
-      fullname: document.getElementById('fullname').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      password: document.getElementById('password').value,
-      volunteerType: document.getElementById('volunteer-type').value
-    };
-
-    try {
-      // Simulate API call to check credentials
-      const response = await checkUserCredentials(formData);
-
-      if (response.authenticated) {
-        // Successful login - redirect to dashboard
-        alert('Login successful! Redirecting to dashboard...');
-        window.location.href = 'dashboard.html';
-      } else {
-        // Failed login
-        passwordError.textContent = 'Invalid email or password';
-        passwordInput.classList.add('invalid');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('An error occurred during login. Please try again.');
-    }
-  });
 });
 
-// Simulated database check function
-async function checkUserCredentials(credentials) {
-  // In a real application, this would be an API call to your backend
-  // For demo purposes, we'll simulate a database check
+ // Update the form submission handler in your existing script
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  // Get form values
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  
+  // Trigger validation
+  document.getElementById('email').dispatchEvent(new Event('input'));
+  document.getElementById('password').dispatchEvent(new Event('input'));
+  
+  // Check for errors
+  const errors = document.querySelectorAll('.error-message');
+  let hasErrors = false;
+  
+  errors.forEach(error => {
+    if (error.textContent !== '') {
+      hasErrors = true;
+    }
+  });
+  
+  if (hasErrors) {
+    return;
+  }
+  
+  // Show loading state
+  const submitBtn = document.querySelector('.login-btn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+  
+  try {
+    // Simulate API call (replace with actual authentication)
+    const response = await authenticateUser(email, password);
+    
+    if (response.success) {
+      // Store authentication token (in a real app)
+      localStorage.setItem('authToken', response.token);
+      
+      // Redirect to dashboard
+      window.location.href = 'dashboard.html';
+    } else {
+      // Show error message
+      document.getElementById('password-error').textContent = 'Invalid email or password';
+      document.getElementById('password').classList.add('invalid');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('An error occurred during login. Please try again.');
+  } finally {
+    // Reset button state
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Sign In';
+  }
+  });
 
+
+// Simulated authentication function (replace with real API call)
+async function authenticateUser(email, password) {
+  // Simulate network delay
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  
   // Get stored users from localStorage (from registration)
   const storedUsers = JSON.parse(localStorage.getItem('volunteerUsers')) || [];
-
-  // Find user in "database"
-  const user = storedUsers.find(u =>
-    u.email === credentials.email &&
-    u.password === credentials.password
-  );
-
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-
+  
+  // Find matching user
+  const user = storedUsers.find(u => u.email === email && u.password === password);
+  
   return {
-    authenticated: !!user,
+    success: !!user,
+    token: user ? 'simulated_jwt_token_' + Math.random().toString(36).substr(2) : null,
     user: user || null
   };
-}
-
+};
 
 // Get existing users or create empty array
 const existingUsers = JSON.parse(localStorage.getItem('volunteerUsers')) || [];
@@ -586,3 +587,122 @@ app.post('/api/social-auth', async (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));
+
+ // Profile Image Handling
+        function uploadImage() {
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    // Here you would typically upload the image to your server
+                    alert('Profile picture updated successfully!');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select an image file first.');
+            }
+        }
+
+        function removeImage() {
+            document.getElementById('profileImage').src = 'https://via.placeholder.com/200';
+            // Here you would typically remove the image from your server
+            alert('Profile picture removed.');
+        }
+
+        // Password Visibility Toggle
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            const icon = input.nextElementSibling.querySelector('i');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Password Strength Checker
+        document.getElementById('newPassword').addEventListener('input', function () {
+            const password = this.value;
+            const requirements = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /[0-9]/.test(password),
+                special: /[^A-Za-z0-9]/.test(password)
+            };
+
+            document.getElementById('length-req').className = requirements.length ? 'valid' : 'invalid';
+            document.getElementById('uppercase-req').className = requirements.uppercase ? 'valid' : 'invalid';
+            document.getElementById('lowercase-req').className = requirements.lowercase ? 'valid' : 'invalid';
+            document.getElementById('number-req').className = requirements.number ? 'valid' : 'invalid';
+            document.getElementById('special-req').className = requirements.special ? 'valid' : 'invalid';
+
+            // Check password match if confirm password is not empty
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (confirmPassword !== '') {
+                checkPasswordMatch();
+            }
+        });
+
+        document.getElementById('confirmPassword').addEventListener('input', checkPasswordMatch);
+
+        function checkPasswordMatch() {
+            const password = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const matchElement = document.getElementById('password-match');
+
+            if (confirmPassword === '') {
+                matchElement.style.display = 'none';
+            } else if (password !== confirmPassword) {
+                matchElement.style.display = 'block';
+            } else {
+                matchElement.style.display = 'none';
+            }
+        }
+
+        // Form Submission Handlers
+        function savePersonalInfo() {
+            // Here you would typically send the data to your server
+            alert('Personal information saved successfully!');
+        }
+
+        function changePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Here you would typically send the data to your server
+            alert('Password changed successfully!');
+            document.getElementById('passwordForm').reset();
+        }
+
+        function savePreferences() {
+            // Here you would typically send the data to your server
+            alert('Preferences saved successfully!');
+        }
+
+       document.addEventListener('DOMContentLoaded', function() {
+    // Existing initialization
+    document.getElementById('gender').value = 'male';
+    document.getElementById('language').value = 'en';
+    
+    // New fields initialization
+    document.getElementById('bloodGroup').value = 'A+';
+    document.getElementById('occupation').value = 'Software Engineer';
+    document.getElementById('vmsRole').value = 'volunteer';
+    document.getElementById('education').value = 'bachelors';
+    document.getElementById('educationalDetails').value = 'B.Sc in Computer Science, XYZ University, 2015';
+});
